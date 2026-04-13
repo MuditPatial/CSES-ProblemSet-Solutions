@@ -2,24 +2,28 @@
 using namespace std;
 
 int main(){
-    string s;
-    cin>>s;
+    int n;
+    cin>>n;
 
-    int n=s.size();
-    int maxFreq=1;
-    int cnt=1;
+    vector<int>vec(n);
+
+    for(int i=0;i<n;i++){
+        cin>>vec[i];
+    }
+
+    long long ans=0;
+    int prev=vec[0];
+
     for(int i=1;i<n;i++){
-        if(s[i] != s[i-1]){
-            maxFreq=max(maxFreq,cnt);
-            cnt=1;
+        if(vec[i]<prev){
+            ans+= 1LL*prev-vec[i];
         }
         else{
-            cnt++;
+            prev=vec[i];
         }
     }
-    maxFreq=max(maxFreq,cnt);
 
-    cout<<maxFreq;
+    cout<<ans;
     
     return 0;
 }
